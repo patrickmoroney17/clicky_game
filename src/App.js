@@ -20,6 +20,26 @@ class App extends Component {
   };
 
 
+  shuffleArr = (imagesArr) => {
+
+    console.log(imagesArr);
+
+    for (let i = imagesArr.length - 1; i > 0; i--) {
+
+        console.log("i: " + i);
+
+        let j = Math.floor(Math.random() * (i + 1));
+
+        [imagesArr[i], imagesArr[j]] = [imagesArr[j], imagesArr[i]];
+
+        console.log("j: " + j)
+        console.log("------")
+
+    }
+
+    return imagesArr;
+
+}
 
   render() {
     return (
