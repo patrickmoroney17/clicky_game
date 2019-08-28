@@ -17,43 +17,64 @@ class App extends Component {
 
   clickPicture = id => {
 
-  };
+    // Pseudo-code
+    // Create ShuffleArr variable array and make that equal the result of calling shuffle function with
+    // friends being passed to the function
+
+    // set the friends imageArr = to the shuffledArr variable
+
+    // use setState to cause a re-render
+    // per documentation - setState() will always lead to a re-rendered  
+
+    // register picture clicks and add them to the clickedArr
+    
+    // if click already in the clickArr (loss condition),
+    // reset score to 0
+    // reinitialize clickedArr
+    // update message tell user they lost
+
+    // else
+    // increment score by 1
+    // call shuffleArr and reshuffle friends
+
+    // if score gt the topscore
+    // update topscore  with this.score
+    
+  }
 
 
-  shuffleArr = (imagesArr) => {
+  shuffleArr = function(imagesArr) {
 
     console.log(imagesArr);
 
     for (let i = imagesArr.length - 1; i > 0; i--) {
 
-        console.log("i: " + i);
+        // console.log("i: " + i);
 
         let j = Math.floor(Math.random() * (i + 1));
 
         [imagesArr[i], imagesArr[j]] = [imagesArr[j], imagesArr[i]];
 
-        console.log("j: " + j)
-        console.log("------")
+        // console.log("j: " + j)
+        // console.log("------")
 
     }
 
     return imagesArr;
 
-}
+  }
 
   render() {
     return (
       <Wrapper>
         <Title>Friends List</Title>
-        {this.state.friends.map(friend => (
+        {this.state.friends.map(picture => (
           <FriendCard
-            removeFriend={this.removeFriend}
-            id={friend.id}
-            key={friend.id}
-            name={friend.name}
-            image={friend.image}
-            occupation={friend.occupation}
-            location={friend.location}
+            clickPicture={this.clickPicture}
+            id={picture.id}
+            key={picture.id} // to get rid of unique key prop warning
+            name={picture.name}
+            image={picture.image}
           />
         ))}
       </Wrapper>
