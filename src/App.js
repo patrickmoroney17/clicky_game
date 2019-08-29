@@ -22,13 +22,13 @@ class App extends Component {
     // Create new ShuffledArr variable array and make that equal the result of calling shuffle function
     // with friends being passed to the function
 
-    var ShuffledArr = this.shuffleArr(friends);
+    var shuffledArr = this.shuffleArr(friends);
 
     // use setState to cause a re-render
     // per documentation - setState() will always lead to a re-render
     // set friends array to the shuffedArr
 
-    this.setState({friends: ShuffledArr});
+    this.setState({friends: shuffledArr});
 
     // if click already in the clickArr (loss condition),
     // reset score to 0
@@ -49,6 +49,7 @@ class App extends Component {
     // with score incremented by 1
 
       } else {
+        
         this.setState({
           clickedArr: this.state.clickedArr.push([id]), 
           score: this.state.score +1,
@@ -65,25 +66,19 @@ class App extends Component {
     
   }
 
+  shuffleArr = function(friends) {
 
-  shuffleArr = function(imagesArr) {
+    console.log(friends);
 
-    console.log(imagesArr);
-
-    for (let i = imagesArr.length - 1; i > 0; i--) {
-
-        // console.log("i: " + i);
+    for (let i = friends.length - 1; i > 0; i--) {
 
         let j = Math.floor(Math.random() * (i + 1));
 
-        [imagesArr[i], imagesArr[j]] = [imagesArr[j], imagesArr[i]];
-
-        // console.log("j: " + j)
-        // console.log("------")
+        [friends[i], friends[j]] = [friends[j], friends[i]];
 
     }
 
-    return imagesArr;
+    return friends;
 
   }
 
