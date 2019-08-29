@@ -88,18 +88,30 @@ class App extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <Title>Friends List</Title>
-        {this.state.friends.map(picture => (
-          <FriendCard
-            clickPicture={this.clickPicture}
-            id={picture.id}
-            key={picture.id} // to get rid of unique key prop warning
-            name={picture.name}
-            image={picture.image}
-          />
-        ))}
-      </Wrapper>
+      <div className="container">
+        <p className = "score">
+            Score: {this.state.score} | TopScore: {this.state.topScore}
+        </p>
+
+        <p className="message">
+          {this.state.message}
+        </p>
+
+        <Wrapper>
+          <Title>Friends List</Title>
+          {this.state.friends.map(picture => (
+            <FriendCard
+              clickPicture={this.clickPicture}
+              id={picture.id}
+              key={picture.id}
+              name={picture.name}
+              image={picture.image}
+            />
+          ))}
+        </Wrapper>
+
+      </div>
+
     );
   }
 }
