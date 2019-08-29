@@ -15,14 +15,7 @@ class App extends Component {
     message: ""
   };
 
-
-  addClick =(id) => {
-    this.setState({clickedArr: [...this.state.clickedArr, id]})
-  }
-
   clickPicture = id => {
-
-    
 
     // Pseudo-code
     // Create new ShuffledArr variable array and make that equal the result of calling shuffle function
@@ -43,7 +36,6 @@ class App extends Component {
 
     if (this.state.clickedArr.includes(id)) {
 
-
       this.setState({
         score: 0,
         clickedArr: [],
@@ -57,19 +49,16 @@ class App extends Component {
 
       } else {
 
-        // clickedArr: this.state.clickedArr.push([id]),
         this.addClick(id)
-
         this.setState({
           score: this.state.score +1
         }, () => this.checkHighScore());
       }
+    }
 
     // if score gt the topscore
     // update topscore  with this.score
     // use setState to re-render
-
-  }
 
   checkHighScore = () => {
     if (this.state.score > this.state.topScore) {
@@ -77,6 +66,11 @@ class App extends Component {
     }
   }
 
+    // adds clicks to the clickArr
+
+  addClick =(id) => {
+    this.setState({clickedArr: [...this.state.clickedArr, id]})
+  }
 
   // I got this shuffle routine from Stack Overflow
   // I did not come up with this code
@@ -115,6 +109,7 @@ class App extends Component {
               image={picture.image}
             />
           ))}
+          
         </Wrapper>
 
       </div>
