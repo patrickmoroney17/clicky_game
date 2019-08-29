@@ -16,13 +16,19 @@ class App extends Component {
   };
 
 
+  addClick =(id) => {
+    this.setState({clickedArr: [...this.state.clickedArr, id]})
+  }
+
   clickPicture = id => {
+
+    
 
     // Pseudo-code
     // Create new ShuffledArr variable array and make that equal the result of calling shuffle function
     // with friends being passed to the function
 
-    var shuffledArr = this.shuffleArr(friends);
+    var shuffledArr = this.shuffleArr(this.state.friends);
 
     // use setState to cause a re-render
     // per documentation - setState() will always lead to a re-render
@@ -37,6 +43,7 @@ class App extends Component {
 
     if (this.state.clickedArr.includes(id)) {
 
+
       this.setState({
         score: 0,
         clickedArr: [],
@@ -49,24 +56,28 @@ class App extends Component {
     // with score incremented by 1
 
       } else {
-        
+
+        // clickedArr: this.state.clickedArr.push([id]),
+        this.addClick(id)
+
         this.setState({
-          clickedArr: this.state.clickedArr.push([id]), 
-          score: this.state.score +1,
-        });
+          score: this.state.score +1
+        }, () => this.checkHighScore());
       }
 
     // if score gt the topscore
     // update topscore  with this.score
     // use setState to re-render
 
-    if (this.state.score > this.state.topScore) {
-      this.setState({ topScore: this.state.topScore});
-    }
-    
   }
 
-  
+  checkHighScore = () => {
+    if (this.state.score > this.state.topScore) {
+      this.setState({ topScore: this.state.score});
+    }
+  }
+
+
   // I got this shuffle routine from Stack Overflow
   // I did not come up with this code
 
@@ -79,13 +90,14 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="container">
 
         <Title>Friends List</Title>
 
         <p className = "score">
-            Score: {this.state.score} -- TopScore: {this.state.topScore}
+            Score: {this.state.score} -- Top Score: {this.state.topScore}
         </p>
 
         <p className="message">
