@@ -66,20 +66,16 @@ class App extends Component {
     
   }
 
+  
+  // I got this shuffle routine from Stack Overflow
+  // I did not come up with this code
+
   shuffleArr = function(friends) {
-
-    console.log(friends);
-
     for (let i = friends.length - 1; i > 0; i--) {
-
         let j = Math.floor(Math.random() * (i + 1));
-
         [friends[i], friends[j]] = [friends[j], friends[i]];
-
     }
-
     return friends;
-
   }
 
   render() {
