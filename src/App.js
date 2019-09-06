@@ -17,22 +17,9 @@ class App extends Component {
 
   clickPicture = id => {
 
-    // Pseudo-code
-    // Create new ShuffledArr variable array and make that equal the result of calling shuffle function
-    // with friends being passed to the function
-
     var shuffledArr = this.shuffleArr(this.state.friends);
 
-    // use setState to cause a re-render
-    // per documentation - setState() will always lead to a re-render
-    // set friends array to the shuffedArr
-
     this.setState({friends: shuffledArr});
-
-    // if click already in the clickArr (loss condition),
-    // reset score to 0
-    // reinitialize clickedArr
-    // update message tell user they lost
 
     if (this.state.clickedArr.includes(id)) {
 
@@ -42,23 +29,15 @@ class App extends Component {
         message: "you lost - game over"
       });
 
-    // else
-    // use setState to re-render
-    // push id that was clicked onto clickedArr
-    // with score incremented by 1
-
       } else {
 
         this.addClick(id)
         this.setState({
-          score: this.state.score +1
+          score: this.state.score +1,
+          message: ""
         }, () => this.checkHighScore());
       }
     }
-
-    // if score gt the topscore
-    // update topscore  with this.score
-    // use setState to re-render
 
   checkHighScore = () => {
     if (this.state.score > this.state.topScore) {
@@ -66,14 +45,9 @@ class App extends Component {
     }
   }
 
-    // adds clicks to the clickArr
-
   addClick =(id) => {
     this.setState({clickedArr: [...this.state.clickedArr, id]})
   }
-
-  // I got this shuffle routine from Stack Overflow
-  // I did not come up with this code
 
   shuffleArr = function(friends) {
     for (let i = friends.length - 1; i > 0; i--) {
